@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gift Advisor</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #eef2f7; padding: 20px; }
+        .form-box { background: white; padding: 20px; border-radius: 8px; max-width: 400px; margin: auto; }
+        input, select, button { width: 100%; margin-bottom: 10px; padding: 10px; }
+    </style>
+</head>
+<body>
+    <div class="form-box">
+        <h2>🎁 Gift Recommendation System</h2>
+        <form method="POST">
+            <label>Occasion:</label>
+            <select name="occasion" required>
+                {% for occ in occasions %}
+                <option value="{{ occ }}">{{ occ }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Sport:</label>
+            <select name="sport" required>
+                {% for sp in sports %}
+                <option value="{{ sp }}">{{ sp }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Budget (KES):</label>
+            <input type="number" name="budget" min="100" required>
+
+            <button type="submit">Get Recommendation</button>
+        </form>
+
+        {% if recommendation %}
+        <div style="margin-top:20px; background:#d9fdd9; padding:15px; border-radius:5px;">
+            <strong>Result:</strong><br>
+            {{ recommendation | safe }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
