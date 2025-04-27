@@ -88,3 +88,39 @@ button:hover {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+/* Make website responsive on mobile */
+@media (max-width: 768px) {
+    .form-box {
+        padding: 20px;
+        margin: 10px;
+        max-width: 90%; /* not fixed 550px */
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+
+    .sports-images {
+        flex-wrap: wrap; /* allow wrapping instead of forcing all 4 images in 1 row */
+    }
+
+    .sports-images img {
+        width: 48%; /* two images per row */
+        margin-bottom: 10px;
+    }
+
+    input, select, button {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .result {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
