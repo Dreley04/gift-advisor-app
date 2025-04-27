@@ -33,9 +33,9 @@ class GiftAdvisor(KnowledgeEngine):
             desc = match['description']
 
             suggestion_text = (
-                f"Gift Idea: {gift}<br>"
-                f"Brand: {brand}<br>"
-                f"{desc}"
+                f"<strong>🎁 Gift Idea:</strong> {gift}<br>"
+                f"<strong>🏷️ Brand:</strong> {brand}<br>"
+                f"<strong>📝 Description:</strong> {desc}"
             )
         else:
             suggestion_text = "Sorry, no recommendation available."
@@ -47,7 +47,12 @@ class GiftAdvisor(KnowledgeEngine):
 def index():
     recommendation = None
     gift_data = pd.read_csv('final_gift_recommendations.csv')
-    occasions = sorted(gift_data['occasion'].str.title().unique())
+
+    occasions = [
+        'Birthday', 'Christmas', 'Graduation', 'Anniversary',
+        "Father's Day", "Mother's Day", "Valentine's Day", "New Year"
+    ]
+
     sports = sorted(gift_data['sport'].str.title().unique())
 
     if request.method == 'POST':
