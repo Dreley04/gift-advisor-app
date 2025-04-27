@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Horizon Sporting Gifts</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="form-box">
+        <h1>🎁 Horizon Sporting 🎁</h1>
+        <p class="subtitle">For every sport. Every passion. Every budget.</p>
+
+        <!-- Banner Image -->
+        <img src="{{ url_for('static', filename='images/sports_banner.jpg') }}" alt="Sports Banner" class="banner-img">
+
+        <!-- Extra Sports Images -->
+        <div class="sports-images">
+            <img src="{{ url_for('static', filename='images/football.jpg') }}" alt="Football">
+            <img src="{{ url_for('static', filename='images/basketball.jpg') }}" alt="Basketball">
+            <img src="{{ url_for('static', filename='images/swimming.jpg') }}" alt="Swimming">
+            <img src="{{ url_for('static', filename='images/cycling.jpg') }}" alt="Cycling">
+        </div>
+
+        <form method="POST" onsubmit="showSpinner()">
+            <label>Occasion:</label>
+            <select name="occasion" required>
+                {% for occ in occasions %}
+                <option value="{{ occ }}">{{ occ }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Sport:</label>
+            <select name="sport" required>
+                {% for sp in sports %}
+                <option value="{{ sp }}">{{ sp }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Budget (KES):</label>
+            <input type="number" name="budget" min="100" required>
+
+            <button type="submit">Get Recommendation</button>
+        </form>
+
+        <div id="spinner" style="display:none; margin-top:10px;">
+            <div class="loader"></div>
+        </div>
+
+        {% if recommendation %}
+        <div class="result">
+            {{ recommendation | safe }}
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        function showSpinner() {
+            document.getElementById('spinner').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
